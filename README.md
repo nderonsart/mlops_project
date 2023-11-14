@@ -31,4 +31,4 @@ The pipeline use a TF-IDF vectorizer with the french stopwords, and a LogisticRe
     - **exploratory_analysis.ipynb** : notebook used to explore the data to discover it.
     - **model_design.ipynb** : notebook used to preprocess the data and train a first model.
 - The folder Data containing the data used to train and evaluate the model.
-- The file requirements.txt containing the python dependencies of the conda environment. The file has been generated using the command ```conda list -e > requirements.txt```.
+- The file requirements.txt containing the python dependencies of the conda environment. To install these versions you have to type the following command in your conda environment: ```pip install -r requirements.txt```.
