@@ -27,7 +27,7 @@ The model is currently a LogisticRegression using a TFIDF-vectorizer, both train
 The pipeline use a TF-IDF vectorizer with the french stopwords, and a LogisticRegression model. The pipeline is trained on the training set and evaluated on the validation set. The pipeline is then saved in a pickle file.
 
 ## MLFlow
-The MLFlow server is used to track the experiments and the models. The server is launched using the following command:
+An MLFlow server is used to track the experiments and the models. The server is launched using the following command:
 ```mlflow server```. The runs and the models can be seen on the MLFlow UI at the following address http://127.0.0.1:5000 in the *model_design* experiment.
 
 ## Project structure
