@@ -26,9 +26,32 @@ The model is currently a LogisticRegression using a TFIDF-vectorizer, both train
 ## Pipeline
 The pipeline use a TF-IDF vectorizer with the french stopwords, and a LogisticRegression model. The pipeline is trained on the training set and evaluated on the validation set. The pipeline is then saved in a pickle file.
 
+## MLFlow
+The MLFlow server is used to track the experiments and the models. The server is launched using the following command:
+```mlflow server```. The runs and the models can be seen on the MLFlow UI at the following address http://127.0.0.1:5000 in the *model_design* experiment.
+
 ## Project structure
-- The folder notebooks containing the notebooks used to develop the project.
+```
+.
+├── data
+│   ├── test.csv
+│   ├── train.csv
+│   └── valide.csv
+├── notebooks
+│   ├── exploratory_analysis.ipynb
+│   ├── model_design_2.ipynb
+│   ├── model_design_3.ipynb
+│   └── model_design.ipynb
+├── README.md
+└── requirements.txt
+```
+
+- The folder Data contains the data used to train, evaluate and test the model.
+
+- The folder notebooks contains the notebooks used to develop the project.
     - **exploratory_analysis.ipynb** : notebook used to explore the data to discover it.
     - **model_design.ipynb** : notebook used to preprocess the data and train a first model.
-- The folder Data containing the data used to train and evaluate the model.
+    - **model_design_2.ipynb** : notebook used to preprocess the data and train models using MLFlow to track the experiments.
+    - **model_design_3.ipynb** : notebook used to preprocess the data and train a first model MLFlow to track the experiments with an experiment function.
+
 - The file requirements.txt containing the python dependencies of the conda environment. To install these versions you have to type the following command in your conda environment: ```pip install -r requirements.txt```.
