@@ -55,3 +55,23 @@ An MLFlow server is used to track the experiments and the models. The server is 
     - **model_design_3.ipynb** : notebook used to preprocess the data and train a first model MLFlow to track the experiments with an experiment function.
 
 - The file requirements.txt containing the python dependencies of the conda environment. To install these versions you have to type the following command in your conda environment: ```pip install -r requirements.txt```.
+
+
+```
+TEST_MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression' TEST_MODEL_VERSION='2' TEST_FILE='data/test.csv' pytest tests/
+```
+
+```
+pip install -e .
+```
+
+```
+predict --input_file 'data/test.csv' --output_file 'data/predictions.csv' --model_name 'Sentiment analysis pipeline with tfidf and logistic regression' --model_version '2' 
+```
+
+```
+promote --model_name 'Sentiment analysis pipeline with tfidf and logistic regression' --model_version '2' --status 'Staging'
+```
+
+```
+```
