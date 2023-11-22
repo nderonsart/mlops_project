@@ -67,6 +67,8 @@ idna==3.4
     # via requests
 importlib-metadata==6.8.0
     # via mlflow
+iniconfig==2.0.0
+    # via pytest
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
@@ -126,6 +128,7 @@ packaging==23.2
     #   gunicorn
     #   matplotlib
     #   mlflow
+    #   pytest
     #   spacy
     #   thinc
 pandas==2.1.1
@@ -139,6 +142,8 @@ pillow==10.1.0
     # via matplotlib
 pip-tools==7.3.0
     # via -r requirements.in
+pluggy==1.3.0
+    # via pytest
 preshed==3.0.9
     # via
     #   spacy
@@ -160,6 +165,8 @@ pyparsing==3.1.1
     # via matplotlib
 pyproject-hooks==1.0.0
     # via build
+pytest==7.4.3
+    # via -r requirements.in
 python-dateutil==2.8.2
     # via
     #   matplotlib

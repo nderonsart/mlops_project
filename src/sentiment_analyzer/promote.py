@@ -16,11 +16,15 @@ def promote(model_name, model_version, status):
         raise ValueError('Status must be one of Staging, Production, Archived')
 
     if status == 'Production':
-        subprocess.run(
+        result = subprocess.run(
             ['pytest',
              pkg_resources.resource_filename(
                  'sentiment_analyzer', '../../tests')]
             )
+        if result.returncode != 0:
+            print("Failure of tests :", result.stdout)
+            raise RuntimeError("Tests failed, the model cannot be promoted to production")
+
 
     client = mlflow.tracking.MlflowClient('http://127.0.0.1:5000')
     client.transition_model_version_stage(
