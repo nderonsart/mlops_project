@@ -18,7 +18,39 @@ The three columns are:
 
 ## Installation
 To install and use the project, you need to configure a conda environment using the requirements.txt file. To do so, you can use the following command:
-```conda create --name mlops --file requirements.txt``````
+```
+conda create --name mlops --file requirements.txt
+```
+
+If you want to use the webapp you can start the API able to make predictions using the following commands.
+```
+python webapp/get_mlflow_model.py --mlflow_server_uri 'http://127.0.0.1:5000' --model_name 'Sentiment analysis pipeline with tfidf and logistic regression' --model_version '2' --target_path $SENTIMENT_ANALYZER_MODEL_PATH
+```
+With *--model_name* the name of the model to load, *--model_version* the version of the model to load, *--mlflow_server_uri* the uri of the MLFlow server and *--target_path* the path where to save the model.
+
+Then you can start the API using the command:
+```
+command uvicorn webapp.app:app --host 0.0.0.0 --reload
+```
+
+The API has its docs at the url http://127.0.0.1:8000/docs where you can try the API.
+
+To use the API in a docker container, you can build the image with:
+```
+docker build -t mlops-webapp:1.0-model-v2 --build-arg MLFLOW_SERVER_URI=http://host.docker.internal:5000 --build-arg MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression' --build-arg MODEL_VERSION='2' .
+```
+And then run the docker container with:
+```
+docker run -p 8080:8000 --name mlops-webapp mlops-webapp:1.0-model-v2
+```
+With the docs at the url http://127.0.0.1:8080/docs.
+
+Once the container has been created you can start and stop it with the following commands:
+```
+docker start mlops-webapp
+docker stop mlops-webapp
+```
+
 
 ## Model
 The model used to predict the polarity of a review is a pipeline using a TF-IDF vectorizer with the french stopwords, and a LogisticRegression model. The pipeline is trained on the training set and evaluated on the validation set. The pipeline is then saved in an MLFlow server.
@@ -100,40 +132,3 @@ TEST_MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression'
 
 ## Usage
 To use the project, you just have to create a conda environment using the command ```conda create --name mlops``` and then run the Makefile with ```make```. The project will then be ready to be used.
-
-
-```
-python webapp/get_mlflow_model.py --mlflow_server_uri 'http://127.0.0.1:5000' --model_name 'Sentiment analysis pipeline with tfidf and logistic regression' --model_version '2' --target_path $SENTIMENT_ANALYZER_MODEL_PATH
-```
-
-```
-command uvicorn webapp.app:app --host 0.0.0.0 --reload
-```
-
-http://127.0.0.1:8000/docs
-
-```
-docker build -t mlops-webapp:1.0-model-v2 --build-arg MLFLOW_SERVER_URI=http://host.docker.internal:5000 --build-arg MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression' --build-arg MODEL_VERSION='2' .
-```
-
-```
-docker run -p 8080:8000 --name mlops-webapp mlops-webapp:1.0-model-v2
-```
-
-http://127.0.0.1:8080/docs
-
-```
-docker start mlops-webapp
-```
-
-```
-docker stop mlops-webapp
-```
-
-```
-webapp deronsart$ docker exec -it mlops-webapp sh
-```
-
-```
-exit
-```
