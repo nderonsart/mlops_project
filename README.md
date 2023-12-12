@@ -158,11 +158,11 @@ docker stop mlops-frontend
 ```
 
 ```
-PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" docker-compose build
+PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" MONGO_INITDB_ROOT_USERNAME="admin" MONGO_INITDB_ROOT_PASSWORD="admin" docker-compose build
 ```
 
 ```
-PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" docker-compose up
+PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" MONGO_INITDB_ROOT_USERNAME="admin" MONGO_INITDB_ROOT_PASSWORD="admin" docker-compose up
 ```
 
 

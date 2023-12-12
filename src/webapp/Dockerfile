@@ -11,7 +11,7 @@ ENV SENTIMENT_ANALYZER_MODEL_PATH=/model
 
 WORKDIR /webapp
 
-RUN pip install mlflow==2.6.0 fastapi==0.104.1 uvicorn==0.24.0.post1 loguru==0.7.2
+RUN pip install mlflow==2.6.0 fastapi==0.104.1 uvicorn==0.24.0.post1 loguru==0.7.2 pymongo==4.6.1
 
 COPY ./app.py .
 COPY ./get_mlflow_model.py .
