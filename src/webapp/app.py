@@ -7,6 +7,8 @@ from pydantic.fields import Field
 
 import pickle
 
+from loguru import logger
+
 
 SENTIMENT_ANALYZER_MODEL_PATH = os.environ.get('SENTIMENT_ANALYZER_MODEL_PATH')
 
@@ -31,11 +33,18 @@ def predict(input: PredictInput):
     @param input: list of reviews
     @return: list of sentiments
     '''
-    y_pred = model.predict(input.reviews)
-    y_pred = ['negatif' if y == 0 else 'positif' for y in y_pred]
-    return {
-        'sentiments': y_pred
-    }
+    logger.info('Predicting sentiments')
+    try:
+        y_pred = model.predict(input.reviews)
+        logger.debug(f'Reviews: {input.reviews}')
+        logger.debug(f'Predicted sentiments: {y_pred}')
+        y_pred = ['negatif' if y == 0 else 'positif' for y in y_pred]
+        return {
+            'sentiments': y_pred
+        }
+    except Exception as e:
+        logger.error(e)
+        raise e
 
 
 @app.get('/get_details',

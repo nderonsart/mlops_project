@@ -132,3 +132,37 @@ TEST_MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression'
 
 ## Usage
 To use the project, you just have to create a conda environment using the command ```conda create --name mlops``` and then run the Makefile with ```make```. The project will then be ready to be used.
+
+
+
+
+```
+streamlit run app.py
+```
+
+```
+http://localhost:8501
+```
+
+```
+docker build -t mlops-frontend:1.0 --build-arg API_URL='http://127.0.0.1:8080' .
+```
+
+```
+docker run -p 9000:8501 --name mlops-frontend mlops-frontend:1.0
+```
+
+```
+docker start mlops-frontend
+docker stop mlops-frontend
+```
+
+```
+PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" docker-compose build
+```
+
+```
+PREDICTON_CONTAINER="mlops-webapp:1.0-model-v2" docker-compose up
+```
+
+

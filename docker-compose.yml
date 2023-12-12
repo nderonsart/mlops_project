@@ -1,0 +1,12 @@
+services:
+  webapp:
+    image: ${PREDICTON_CONTAINER}
+
+  frontend:
+    build: ./src/frontend
+    ports:
+      - 9000:8501
+    environment:
+      - API_URL=http://webapp:8000
+    depends_on:
+      - webapp
