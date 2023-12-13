@@ -6,12 +6,26 @@
 #
 alembic==1.12.1
     # via mlflow
+altair==5.2.0
+    # via streamlit
+anyio==3.7.1
+    # via
+    #   fastapi
+    #   starlette
+attrs==23.1.0
+    # via
+    #   jsonschema
+    #   referencing
 blinker==1.7.0
-    # via flask
+    # via
+    #   flask
+    #   streamlit
 blis==0.7.11
     # via thinc
 build==1.0.3
     # via pip-tools
+cachetools==5.3.2
+    # via streamlit
 catalogue==2.0.10
     # via
     #   spacy
@@ -27,7 +41,9 @@ click==8.1.7
     #   flask
     #   mlflow
     #   pip-tools
+    #   streamlit
     #   typer
+    #   uvicorn
 cloudpickle==2.2.1
     # via
     #   hyperopt
@@ -45,10 +61,14 @@ cymem==2.0.8
     #   thinc
 databricks-cli==0.18.0
     # via mlflow
+dnspython==2.4.2
+    # via pymongo
 docker==6.1.3
     # via mlflow
 entrypoints==0.4
     # via mlflow
+fastapi==0.104.1
+    # via -r requirements.in
 flask==2.3.3
     # via mlflow
 fonttools==4.45.0
@@ -58,34 +78,52 @@ future==0.18.3
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.40
-    # via mlflow
+    # via
+    #   mlflow
+    #   streamlit
 gunicorn==21.2.0
     # via mlflow
+h11==0.14.0
+    # via uvicorn
 hyperopt==0.2.7
     # via -r requirements.in
 idna==3.4
-    # via requests
+    # via
+    #   anyio
+    #   requests
 importlib-metadata==6.8.0
-    # via mlflow
+    # via
+    #   mlflow
+    #   streamlit
 iniconfig==2.0.0
     # via pytest
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
     # via
+    #   altair
     #   flask
     #   mlflow
+    #   pydeck
     #   spacy
 joblib==1.3.2
     # via scikit-learn
+jsonschema==4.20.0
+    # via altair
+jsonschema-specifications==2023.11.2
+    # via jsonschema
 kiwisolver==1.4.5
     # via matplotlib
 langcodes==3.3.0
     # via spacy
+loguru==0.7.2
+    # via -r requirements.in
 mako==1.3.0
     # via alembic
 markdown==3.5.1
     # via mlflow
+markdown-it-py==3.0.0
+    # via rich
 markupsafe==2.1.3
     # via
     #   jinja2
@@ -96,6 +134,8 @@ matplotlib==3.8.0
     #   -r requirements.in
     #   mlflow
     #   seaborn
+mdurl==0.1.2
+    # via markdown-it-py
 mlflow==2.6.0
     # via -r requirements.in
 murmurhash==1.0.10
@@ -107,6 +147,7 @@ networkx==3.2.1
     # via hyperopt
 numpy==1.26.2
     # via
+    #   altair
     #   blis
     #   contourpy
     #   hyperopt
@@ -114,15 +155,18 @@ numpy==1.26.2
     #   mlflow
     #   pandas
     #   pyarrow
+    #   pydeck
     #   scikit-learn
     #   scipy
     #   seaborn
     #   spacy
+    #   streamlit
     #   thinc
 oauthlib==3.2.2
     # via databricks-cli
 packaging==23.2
     # via
+    #   altair
     #   build
     #   docker
     #   gunicorn
@@ -130,16 +174,21 @@ packaging==23.2
     #   mlflow
     #   pytest
     #   spacy
+    #   streamlit
     #   thinc
 pandas==2.1.1
     # via
     #   -r requirements.in
+    #   altair
     #   mlflow
     #   seaborn
+    #   streamlit
 pathy==0.10.3
     # via spacy
 pillow==10.1.0
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   streamlit
 pip-tools==7.3.0
     # via -r requirements.in
 pluggy==1.3.0
@@ -149,18 +198,29 @@ preshed==3.0.9
     #   spacy
     #   thinc
 protobuf==4.25.1
-    # via mlflow
+    # via
+    #   mlflow
+    #   streamlit
 py4j==0.10.9.7
     # via hyperopt
 pyarrow==12.0.1
-    # via mlflow
+    # via
+    #   mlflow
+    #   streamlit
 pydantic==1.10.13
     # via
     #   confection
+    #   fastapi
     #   spacy
     #   thinc
+pydeck==0.8.1b0
+    # via streamlit
+pygments==2.17.2
+    # via rich
 pyjwt==2.8.0
     # via databricks-cli
+pymongo==4.6.1
+    # via -r requirements.in
 pyparsing==3.1.1
     # via matplotlib
 pyproject-hooks==1.0.0
@@ -171,6 +231,7 @@ python-dateutil==2.8.2
     # via
     #   matplotlib
     #   pandas
+    #   streamlit
 pytz==2023.3.post1
     # via
     #   mlflow
@@ -179,12 +240,23 @@ pyyaml==6.0.1
     # via mlflow
 querystring-parser==1.2.4
     # via mlflow
+referencing==0.32.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
 requests==2.31.0
     # via
     #   databricks-cli
     #   docker
     #   mlflow
     #   spacy
+    #   streamlit
+rich==13.7.0
+    # via streamlit
+rpds-py==0.13.2
+    # via
+    #   jsonschema
+    #   referencing
 scikit-learn==1.3.0
     # via
     #   -r requirements.in
@@ -208,6 +280,8 @@ smart-open==6.4.0
     #   spacy
 smmap==5.0.1
     # via gitdb
+sniffio==1.3.0
+    # via anyio
 spacy==3.5.3
     # via -r requirements.in
 spacy-legacy==3.0.12
@@ -225,12 +299,24 @@ srsly==2.4.8
     #   confection
     #   spacy
     #   thinc
+starlette==0.27.0
+    # via fastapi
+streamlit==1.29.0
+    # via -r requirements.in
 tabulate==0.9.0
     # via databricks-cli
+tenacity==8.2.3
+    # via streamlit
 thinc==8.1.12
     # via spacy
 threadpoolctl==3.2.0
     # via scikit-learn
+toml==0.10.2
+    # via streamlit
+toolz==0.12.0
+    # via altair
+tornado==6.4
+    # via streamlit
 tqdm==4.66.1
     # via
     #   hyperopt
@@ -242,15 +328,23 @@ typer==0.7.0
 typing-extensions==4.8.0
     # via
     #   alembic
+    #   fastapi
     #   pydantic
     #   sqlalchemy
+    #   streamlit
 tzdata==2023.3
     # via pandas
+tzlocal==5.2
+    # via streamlit
 urllib3==2.1.0
     # via
     #   databricks-cli
     #   docker
     #   requests
+uvicorn==0.24.0.post1
+    # via -r requirements.in
+validators==0.22.0
+    # via streamlit
 wasabi==1.1.2
     # via
     #   spacy
