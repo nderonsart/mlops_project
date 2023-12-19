@@ -9,12 +9,14 @@ setup(
     install_requires=[
         'mlflow',
         'click',
-        'pandas'
+        'pandas',
+        'skops'
     ],
     entry_points={
         'console_scripts': [
             'predict=sentiment_analyzer.predict:predict',
-            'promote=sentiment_analyzer.promote:promote'
+            'promote=sentiment_analyzer.promote:promote',
+            'hf_export=sentiment_analyzer.hf_export:hf_export'
         ],
     },
 )

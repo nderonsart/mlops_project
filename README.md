@@ -74,6 +74,15 @@ docker start mlops-webapp
 docker stop mlops-webapp
 ```
 
+Another version of the webapp is webapp.hf which loads a HuggingFace model instead of a model saved in MLFlow. To use this version you can build the image from the terminal in the src/webapp.hf folder with for example:
+```
+docker build -t mlops-webapp-hf:1.0-model-v5 --build-arg MODEL_NAME='sentiment-analyzer' --build-arg MODEL_VERSION='5' --build-arg HF_ID='haltux' .
+```
+And then run the docker container with:
+```
+docker run -p 8080:80 --name mlops-webapp-hf mlops-webapp-hf:1.0-model-v5
+```
+
 ### Frontend app
 The frontend app is a streamlit web application that allows the user to enter a review and get the polarity of the review. It can also display the n lasts reviews entered in the model and their predicted polarity.
 
@@ -138,10 +147,15 @@ When the containers are started, the frontend app is available at the url http:/
 │   │   └── Dockerfile
 │   ├── sentiment_analyzer
 │   │   ├── __init__.py
+│   │   ├── hf_export.py
 │   │   ├── model_manager.py
 │   │   ├── predict.py
 │   │   └── promote.py
-│   └── webapp
+│   ├── webapp
+│   │   ├── app.py
+│   │   ├── Dockerfile
+│   │   └── get_mlflow_model.py
+│   └── webapp.hf
 │       ├── app.py
 │       ├── Dockerfile
 │       └── get_mlflow_model.py
@@ -166,6 +180,10 @@ When the containers are started, the frontend app is available at the url http:/
 
 - The folder src contains the source code of the project. It contains a sentiment_analyzer package with the following files:
     - **__init__.py**: the file used to make the package a python package.
+    - **hf_export.py**: the file containing the function to export a model from the HuggingFace library to MLFlow. Once the package has been installed, this function can be called from the command line with the command ```hf_export```. For example:
+    ```
+    hf_export --model_name 'Sentiment analysis pipeline with tfidf and logistic regression' --model_version '2' --data_file 'data/train.csv' --hf_id 'your_huggingface_id' --hf_token 'your_huggingface_token' 
+    ```
     - **model_manager.py**: the file containing the class ModelManager that can load a model from the MLFlow server and make predictions.
     - **predict.py**: file containing the function to make predictions on a dataset and saving the file in the output_file. Once the package has been installed, this function can be called from the command line with the command ```predict```. For example:
     ```

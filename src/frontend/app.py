@@ -9,10 +9,8 @@ API_URL = os.environ.get('API_URL')
 
 st.title('Sentiment Analyzer')
 
-# create two tabs 
 tabs = ['Prediction', 'History']
 
-# create a sidebar
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", tabs)
 
