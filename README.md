@@ -129,6 +129,13 @@ The *PREDICTON_CONTAINER*, *MONGO_INITDB_ROOT_USERNAME* and *MONGO_INITDB_ROOT_P
 
 When the containers are started, the frontend app is available at the url http://127.0.0.1:9000.
 
+If you want to load the version of the project that is in Docker Hub you have to create a docker-compose.yml file in your computer and execute it with the following commands :
+```
+WEBAPP_IMAGE=nderonsart/webapp-hf:1 WEBAPP_IMAGE_VERSION=1 FRONTEND_IMAGE=nderonsart/frontend:1 docker-compose build
+
+WEBAPP_IMAGE=nderonsart/webapp-hf:1 WEBAPP_IMAGE_VERSION=1 FRONTEND_IMAGE=nderonsart/frontend:1 docker-compose up
+```
+
 ## Project structure
 ```
 .
