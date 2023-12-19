@@ -69,10 +69,14 @@ entrypoints==0.4
     # via mlflow
 fastapi==0.104.1
     # via -r requirements.in
+filelock==3.13.1
+    # via huggingface-hub
 flask==2.3.3
     # via mlflow
 fonttools==4.45.0
     # via matplotlib
+fsspec==2023.12.2
+    # via huggingface-hub
 future==0.18.3
     # via hyperopt
 gitdb==4.0.11
@@ -85,6 +89,8 @@ gunicorn==21.2.0
     # via mlflow
 h11==0.14.0
     # via uvicorn
+huggingface-hub==0.19.4
+    # via skops
 hyperopt==0.2.7
     # via -r requirements.in
 idna==3.4
@@ -170,9 +176,11 @@ packaging==23.2
     #   build
     #   docker
     #   gunicorn
+    #   huggingface-hub
     #   matplotlib
     #   mlflow
     #   pytest
+    #   skops
     #   spacy
     #   streamlit
     #   thinc
@@ -237,7 +245,9 @@ pytz==2023.3.post1
     #   mlflow
     #   pandas
 pyyaml==6.0.1
-    # via mlflow
+    # via
+    #   huggingface-hub
+    #   mlflow
 querystring-parser==1.2.4
     # via mlflow
 referencing==0.32.0
@@ -248,6 +258,7 @@ requests==2.31.0
     # via
     #   databricks-cli
     #   docker
+    #   huggingface-hub
     #   mlflow
     #   spacy
     #   streamlit
@@ -261,6 +272,7 @@ scikit-learn==1.3.0
     # via
     #   -r requirements.in
     #   mlflow
+    #   skops
 scipy==1.11.4
     # via
     #   hyperopt
@@ -274,6 +286,8 @@ six==1.16.0
     #   hyperopt
     #   python-dateutil
     #   querystring-parser
+skops==0.9.0
+    # via -r requirements.in
 smart-open==6.4.0
     # via
     #   pathy
@@ -304,7 +318,9 @@ starlette==0.27.0
 streamlit==1.29.0
     # via -r requirements.in
 tabulate==0.9.0
-    # via databricks-cli
+    # via
+    #   databricks-cli
+    #   skops
 tenacity==8.2.3
     # via streamlit
 thinc==8.1.12
@@ -319,6 +335,7 @@ tornado==6.4
     # via streamlit
 tqdm==4.66.1
     # via
+    #   huggingface-hub
     #   hyperopt
     #   spacy
 typer==0.7.0
@@ -329,6 +346,7 @@ typing-extensions==4.8.0
     # via
     #   alembic
     #   fastapi
+    #   huggingface-hub
     #   pydantic
     #   sqlalchemy
     #   streamlit
