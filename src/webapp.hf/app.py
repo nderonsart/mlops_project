@@ -38,8 +38,10 @@ model = pickle.load(open('/model/model.pkl', 'rb'))
 def predict(input: PredictInput):
     '''
     Prediction of sentiment analysis on movies reviews
-    @param input: list of reviews
-    @return: list of sentiments
+    Params:
+        input: Input data (list of reviews)
+    Returns:
+        List of predicted sentiments
     '''
     logger.info('Predicting sentiments')
     try:
@@ -69,7 +71,8 @@ def predict(input: PredictInput):
 def get_details():
     '''
     Get details of the model used by the container
-    @return: details of the model
+    Returns:
+        Details of the model
     '''
     with open(SENTIMENT_ANALYZER_MODEL_PATH + '/model_infos.json', 'r') as f:
         model_infos = f.read().replace('\'', '\"')
@@ -82,7 +85,8 @@ def get_details():
 def get_stage():
     '''
     Get stage level of the model used by the container
-    @return: stage level of the model
+    Returns:
+        Stage level of the model
     '''
     with open(SENTIMENT_ANALYZER_MODEL_PATH + '/model_infos.json', 'r') as f:
         model_infos = f.read().replace('\'', '\"')
@@ -97,8 +101,10 @@ def get_stage():
 def get_history(n: int):
     '''
     Get the n last elements of the history of mongodb
-    @param n: number of last elements
-    @return: list of the n last elements of the history of mongodb
+    Params:
+        n: Number of last elements
+    Returns:
+        History of the last n elements
     '''
     logger.info('Getting history')
     try:
