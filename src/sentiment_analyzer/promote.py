@@ -12,6 +12,14 @@ import mlflow
 @click.option('--status', '-s', type=str,
               help='Model status', required=True)
 def promote(model_name, model_version, status):
+    '''
+    Promote a model to a specific stage
+    If the stage is Production, run the tests before
+    Params:
+        model_name: Model name
+        model_version: Model version
+        status: Model status
+    '''
     if status not in ['Staging', 'Production', 'Archived']:
         raise ValueError('Status must be one of Staging, Production, Archived')
 
@@ -23,8 +31,8 @@ def promote(model_name, model_version, status):
             )
         if result.returncode != 0:
             print("Failure of tests :", result.stdout)
-            raise RuntimeError("Tests failed, the model cannot be promoted to production")
-
+            raise RuntimeError(
+                "Tests failed, the model cannot be promoted to production")
 
     client = mlflow.tracking.MlflowClient('http://127.0.0.1:5000')
     client.transition_model_version_stage(

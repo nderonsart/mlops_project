@@ -21,6 +21,14 @@ Ajouter un endpoint get_stage qui renvoie le stage level, à savoir None, Stagin
 @click.option("--model_version")
 @click.option("--target_path")
 def main(mlflow_server_uri, model_name, model_version, target_path):
+    '''
+    Get model from MLFlow server
+    Params:
+        mlflow_server_uri: MLFlow server URI
+        model_name: Model name
+        model_version: Model version
+        target_path: Target path
+    '''
     mlflow.set_tracking_uri(mlflow_server_uri)
     model = mlflow.sklearn.load_model(
         model_uri=f'models:/{model_name}/{model_version}')

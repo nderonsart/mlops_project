@@ -18,6 +18,16 @@ from sentiment_analyzer.model_manager import ModelManager
               help='MLFlow URL', required=True)
 def predict(input_file, output_file, text,
             model_name, model_version, mlflow_url):
+    '''
+    Predict sentiment from input file or text
+    Params:
+        input_file: Input file
+        output_file: Output file
+        text: Text to predict
+        model_name: Model name
+        model_version: Model version
+        mlflow_url: MLFlow URL
+    '''
     model_manager = ModelManager(model_name, model_version, mlflow_url)
 
     if input_file is not None:

@@ -27,7 +27,7 @@ conda create --name mlops --file requirements.txt
 The model used to predict the polarity of a review is a pipeline using a TF-IDF vectorizer with the french stopwords, and a LogisticRegression model. The pipeline is trained on the training set and evaluated on the validation set. The pipeline is then saved in an MLFlow server.
 
 ## MLFlow
-An MLFlow server is used to track the experiments and the models. The server is launched using the following command:
+An MLFlow server is used to track the experiments and the models. The server is launched using the following command from your MLFlow folder:
 ```
 mlflow server
 ```
@@ -129,9 +129,19 @@ The *PREDICTON_CONTAINER*, *MONGO_INITDB_ROOT_USERNAME* and *MONGO_INITDB_ROOT_P
 
 When the containers are started, the frontend app is available at the url http://127.0.0.1:9000.
 
+If you want to load the version of the project that is in Docker Hub you have to create a docker-compose.yml file in your computer and execute it with the following commands :
+```
+WEBAPP_IMAGE=nderonsart/webapp-hf:1 WEBAPP_IMAGE_VERSION=1 FRONTEND_IMAGE=nderonsart/frontend:1 docker-compose build
+
+WEBAPP_IMAGE=nderonsart/webapp-hf:1 WEBAPP_IMAGE_VERSION=1 FRONTEND_IMAGE=nderonsart/frontend:1 docker-compose up
+```
+
 ## Project structure
 ```
 .
+├── .github
+│   └── workflows
+│       └── docker-build.yml
 ├── data
 │   ├── test.csv
 │   ├── train.csv
@@ -170,6 +180,8 @@ When the containers are started, the frontend app is available at the url http:/
 └── setup.py
 ```
 
+- The folder .github contains the github actions used to build the docker images of the application and push them to Docker Hub when a new version is pushed to the main branch.
+
 - The folder Data contains the data used to train, evaluate and test the model.
 
 - The folder notebooks contains the notebooks used to develop the project.
@@ -206,7 +218,7 @@ TEST_MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression'
 
 - The file .gitignore contains the files and folders that are ignored by git.
 
-- The file Makefile contains the commands to run the project. It contains the following commands:
+- The file Makefile contains the commands to run the project to create the sentiment_analyzer package. It contains the following commands:
     - **build_dev_requirements**: command to build the requirements.txt file from the requirements.in file.
     - **install_dev_requirements**: command to install the requirements.txt file in the conda environment.
     - **install**: command to install the packages in the src folder in the conda environment.
@@ -216,8 +228,3 @@ TEST_MODEL_NAME='Sentiment analysis pipeline with tfidf and logistic regression'
 - The file requirements.txt containing the python dependencies of the conda environment. To install these versions you have to type the following command in your conda environment: ```pip install -r requirements.txt```.
 
 - The file setup.py contains the information to install the package in the conda environment. To install the package in the conda environment you have to type the following command: ```pip install -e .```.
-
-## Usage
-To use the project, you just have to create a conda environment using the command ```conda create --name mlops``` and then run the Makefile with ```make```. The project will then be ready to be used.
-
-

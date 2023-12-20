@@ -17,18 +17,27 @@ mlflow_model = mlflow.sklearn.load_model(
 
 
 def test_simple_input():
+    '''
+    Test a simple input
+    '''
     inputs = ['Bonjour, je suis un test']
     prediction = mlflow_model.predict(inputs)
     assert prediction[0] in [0, 1]
 
 
 def test_unusual_inputs():
+    '''
+    Test unusual inputs
+    '''
     inputs = ['&$@é', '']
     prediction = mlflow_model.predict(inputs)
     assert all([x in [0, 1] for x in prediction])
 
 
 def test_obvious_inputs():
+    '''
+    Test obvious inputs
+    '''
     inputs = [
         'Ce film est génial, très bien réalisé et les acteurs excellents',
         'c nul']
@@ -38,6 +47,9 @@ def test_obvious_inputs():
 
 
 def test_accuracy():
+    '''
+    Test accuracy
+    '''
     df = pd.read_csv(TEST_TEST_SET, index_col=0)
     X_test = df['review']
     y_test = df['polarity']
